@@ -47,8 +47,7 @@ class Bluetooth(object):
                     if condition == "Available" or condition in dev and dev[condition]:
                         if (addr := dev.get("Address")) is not None and (device := utils.get_device(path)) is not None:
                             yield addr, BluetoothDevice(device, addr)
-        except GError as error:
-            print(error)
+        except GError:
             pass
 
     def make_discoverable(self, value=True, timeout=180):
